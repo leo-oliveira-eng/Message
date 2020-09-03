@@ -7,7 +7,7 @@ namespace Messages.Core.UnitTests.Maybe
     public class CreateUnitTests : BaseMock
     {
         [TestMethod]
-        public void CreateMaybe_ShouldCreateWithoutParameters()
+        public void CreateMaybe_ShouldCreateEncapsulatingStudent()
         {
             var student = StudentFake();
                 
