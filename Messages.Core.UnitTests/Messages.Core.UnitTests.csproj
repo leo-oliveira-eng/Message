@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Messages.Core\Messages.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Response\" />
+  </ItemGroup>
+
 </Project>
