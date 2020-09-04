@@ -3,14 +3,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Messages.Core.UnitTests.VoidResponse
 {
-    [TestClass, TestCategory(nameof(Response))]
+    [TestClass, TestCategory(nameof(Core.Response))]
     public class AddMessage : BaseMock
     {
         [TestMethod]
         public void AddMessage_ShouldAddOneMessageToResponse()
         {
             var message = MessageFake();
-            var voidResponse = Response.Create();
+            var voidResponse = Core.Response.Create();
 
             var response = voidResponse.AddMessage(message);
 

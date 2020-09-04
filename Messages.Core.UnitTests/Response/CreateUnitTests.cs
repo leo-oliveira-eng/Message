@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Messages.Core.UnitTests.VoidResponse
+namespace Messages.Core.UnitTests.Response
 {
     [TestClass, TestCategory(nameof(Core.Response))]
-    public class OkUnitTests : BaseMock
+    public class CreateUnitTests : BaseMock
     {
         [TestMethod]
-        public void OkResponse_ShouldCreateVoidResponse()
+        public void CreateResponse_ShouldCreateResponseWithoutValue()
         {
-            var response = Core.Response.Ok();
+            var response = Core.Response<Student>.Create();
 
             response.Should().NotBeNull();
             response.HasError.Should().BeFalse();
@@ -17,16 +17,15 @@ namespace Messages.Core.UnitTests.VoidResponse
         }
 
         [TestMethod]
-        public void OkResponse_ShouldCreateResponseWithOneMessage()
+        public void CreateResponse_ShouldCreateResponseEncapsulatingStudent()
         {
-            var message = MessageFake();
+            var student = StudentFake();
 
-            var response = Core.Response.Ok(message);
+            var response = Core.Response<Student>.Create(student);
 
             response.Should().NotBeNull();
             response.HasError.Should().BeFalse();
-            response.Messages.Should().Contain(message);
-            response.Messages.Count.Should().Be(1);
+            response.Messages.Should().BeEmpty();
         }
     }
 }
