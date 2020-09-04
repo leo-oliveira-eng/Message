@@ -1,4 +1,5 @@
 ﻿using FizzWare.NBuilder;
+using Messages.Core.Enums;
 using System;
 
 namespace Messages.Core.UnitTests
@@ -20,6 +21,14 @@ namespace Messages.Core.UnitTests
                 .With(x => x.Code, code ?? Guid.NewGuid())
                 .With(x => x.Name, name ?? "Sherlock Holmes")
                 .With(x => x.Cpf, cpf ?? "123456789")
+                .Build();
+
+        public Core.Message MessageFake(string text = null, string property = null, MessageType type = default)
+            => Builder<Core.Message>
+                .CreateNew()
+                .With(x => x.Text, text ?? "Any message")
+                .With(x => x.Property, property ?? "Any")
+                .With(x => x.Type, type)
                 .Build();
     }
 }
