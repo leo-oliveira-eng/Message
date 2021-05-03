@@ -14,10 +14,10 @@ namespace Messages.Core
     {
         #region Properties
 
+        private readonly List<Message> _messages = new List<Message>();
+
         [DataMember]
         public IReadOnlyCollection<Message> Messages => _messages;
-
-        private List<Message> _messages { get; set; } = new List<Message>();
 
         [DataMember]
         public bool HasError => _messages.Any(x => x.Type.Equals(MessageType.BusinessError) || x.Type.Equals(MessageType.CriticalError));
@@ -50,10 +50,7 @@ namespace Messages.Core
             return this;
         }
 
-        public Task ExecuteResultAsync(ActionContext context)
-        {
-            return Task.CompletedTask;
-        }
+        public Task ExecuteResultAsync(ActionContext context) => Task.CompletedTask;
 
         #endregion
     }

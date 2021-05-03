@@ -1,6 +1,7 @@
 ﻿using FizzWare.NBuilder;
 using Messages.Core.Enums;
 using System;
+using System.ComponentModel;
 
 namespace Messages.Core.UnitTests
 {
@@ -13,6 +14,14 @@ namespace Messages.Core.UnitTests
             public string Name { get; set; }
 
             public string Cpf { get; set; }
+        }
+
+        public enum AnyEnum
+        {
+            [Description("Undefined")]
+            None = 0,
+
+            Any = 1
         }
 
         public Student StudentFake(Guid? code = null, string name = null, string cpf = null)

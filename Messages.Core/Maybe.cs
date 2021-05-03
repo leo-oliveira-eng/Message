@@ -3,7 +3,7 @@
 namespace Messages.Core
 {
     [DataContract]
-    public class Maybe<TValue>
+    public sealed class Maybe<TValue>
     {
         #region Properties
 
@@ -17,9 +17,9 @@ namespace Messages.Core
 
         #region Constructors
 
-        Maybe() { }
+        private Maybe() { }
 
-        Maybe(TValue value) => Value = value;
+        private Maybe(TValue value) => Value = value;
 
         #endregion
 
@@ -36,6 +36,5 @@ namespace Messages.Core
         public static implicit operator Maybe<TValue>(TValue value) => Create(value);
 
         #endregion
-
     }
 }
