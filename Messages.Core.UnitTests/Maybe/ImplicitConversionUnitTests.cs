@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Messages.Core.UnitTests.Maybe
 {
     [TestClass, TestCategory("Maybe")]
-    public class ImplicitConvertionUnitTests : BaseMock
+    public class ImplicitConversionUnitTests : BaseMock
     {
         [TestMethod]
         public void ConversionOperator_ShouldPerformImplicitConversion()

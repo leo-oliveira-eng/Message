@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.Serialization;
@@ -50,6 +51,7 @@ namespace Messages.Core
             return this;
         }
 
+        [ExcludeFromCodeCoverage]
         public Task ExecuteResultAsync(ActionContext context) => Task.CompletedTask;
 
         #endregion
