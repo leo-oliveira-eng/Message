@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
 
 namespace Messages.Core.Enums.Extensions
 {
@@ -10,13 +9,13 @@ namespace Messages.Core.Enums.Extensions
         {
             var fieldInfo = value.GetType().GetField(value.ToString());
 
-            if (fieldInfo == null)
+            if (fieldInfo is null)
                 return string.Empty;
 
             var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
-            return attributes.Any() 
-                ? attributes.First().Description 
+            return attributes.Length > 0
+                ? attributes[0].Description
                 : value.ToString();
         }
     }

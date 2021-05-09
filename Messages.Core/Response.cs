@@ -16,11 +16,11 @@ namespace Messages.Core
 
         Response() { }
 
-        public Response(Message message) : base(message) { }
+        private Response(Message message) : base(message) { }
 
-        public Response(Message message, TValue value) : base(message) => SetValue(value);
+        private Response(Message message, TValue value) : base(message) => SetValue(value);
 
-        public Response(TValue value) => SetValue(value);
+        private Response(TValue value) => SetValue(value);
 
         #endregion
 
@@ -29,6 +29,10 @@ namespace Messages.Core
         public static new Response<TValue> Create() => new Response<TValue>();
 
         public static Response<TValue> Create(TValue value) => new Response<TValue>(value);
+
+        public static Response<TValue> Create(Message message, TValue value) => new Response<TValue>(message, value);
+
+        public static Response<TValue> Create(Message message) => new Response<TValue>(message);
 
         public Response<TValue> SetValue(TValue value)
         {

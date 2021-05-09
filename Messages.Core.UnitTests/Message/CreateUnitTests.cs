@@ -44,11 +44,11 @@ namespace Messages.Core.UnitTests.Message
         [ExpectedException(typeof(ArgumentException))]
         public void CreateMessage_ShouldThrowArgumentException()
         {
-            var student = StudentFake();
             var messageType = MessageType.CriticalError;
             var textMessage = string.Empty;
+            Student student;
 
-            var response = Core.Message.Create(nameof(student.Cpf), textMessage, messageType);
+            _ = Core.Message.Create(nameof(student.Cpf), textMessage, messageType);
         }
     }
 }

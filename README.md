@@ -97,4 +97,5 @@ public static Response<Entity> Create(string name, string document)
 
 ## License [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fleo-oliveira-eng%2FMessage.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fleo-oliveira-eng%2FMessage?ref=badge_shield)
 The project is under [MIT License](LICENSE.md), so it grants you permission to use, copy, and modify a piece of this software free of charge, as is, without restriction or warranty.
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fleo-oliveira-eng%2FMessage.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fleo-oliveira-eng%2FMessage?ref=badge_large)

@@ -4,7 +4,7 @@ using System;
 
 namespace Messages.Core
 {
-    public class Message
+    public sealed class Message
     {
         #region Properties
 
@@ -21,11 +21,11 @@ namespace Messages.Core
         #region Constructors
 
         [Obsolete("For class deserialization only", true)]
-        Message() { }
+        private Message() { }
 
 
-        Message(string text, MessageType type = MessageType.BusinessError, string nameOfProperty = null)
-        {          
+        private Message(string text, MessageType type = MessageType.BusinessError, string nameOfProperty = null)
+        {
             Text = text;
             Type = type;
             Property = nameOfProperty;
