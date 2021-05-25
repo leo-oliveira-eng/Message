@@ -1,4 +1,4 @@
-# Message ![.NET Core](https://github.com/leo-oliveira-eng/Message/workflows/.NET%20Core/badge.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+# Message ![.NET Core](https://github.com/leo-oliveira-eng/Message/workflows/.NET%20Core/badge.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/vpre/Message.Response.Maybe)](https://www.nuget.org/packages/Message.Response.Maybe) [![codecov](https://codecov.io/gh/leo-oliveira-eng/Message/branch/master/graph/badge.svg?token=PHRGUJB9UI)](https://codecov.io/gh/leo-oliveira-eng/Message) [![CodeQL](https://github.com/leo-oliveira-eng/Message/actions/workflows/codeQL.yml/badge.svg)](https://github.com/leo-oliveira-eng/Message/actions/workflows/codeQL.yml)
 
 This package encapsulates responses between methods preventing traffic from null objects in an application. 
 
@@ -8,22 +8,22 @@ Message.Response.Maybe is available on [NuGet](https://www.nuget.org/packages/Me
 
  - Package Manager
 ```
-pm> Install-Package Message.Response.Maybe -Version 1.0.0-preview-2
+pm> Install-Package Message.Response.Maybe -Version 1.0.0-preview-3
 ```
 
  - via the .NET Core CLI:
 ```
-> dotnet add package Message.Response.Maybe --version 1.0.0-preview-2
+> dotnet add package Message.Response.Maybe --version 1.0.0-preview-3
 ```
 
  - PackageReference
 ```
-<PackageReference Include="Message.Response.Maybe" Version="1.0.0-preview-2" />
+<PackageReference Include="Message.Response.Maybe" Version="1.0.0-preview-3" />
 ```
 
  - PaketCLI
 ```
-> paket add Message.Response.Maybe --version 1.0.0-preview-2
+> paket add Message.Response.Maybe --version 1.0.0-preview-3
 ```
 
 
@@ -60,7 +60,7 @@ The developer can act as follows when receiving the response:
 
     var entity = await EntityRepository.FindAsync(entityId);
 
-    if (!house.HasValue)
+    if (!entity.HasValue)
         return response.WithBusinessError("Not found");
 
   ...

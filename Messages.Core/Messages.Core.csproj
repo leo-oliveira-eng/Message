@@ -1,15 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 	<PackageId>Message.Response.Maybe</PackageId>
-	<Version>1.0.0-preview-2</Version>
 	<Authors>Leonardo de Oliveira (leo.oliveira.eng@outlook.com)</Authors>
+	<Description>Package that encapsulates responses between methods</Description>
 	<RepositoryUrl>https://github.com/leo-oliveira-eng/Message</RepositoryUrl>
 	<PackageLicenseFile>License.txt</PackageLicenseFile>
 	<RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+	<RepositoryUrl>https://github.com/leo-oliveira-eng/Message</RepositoryUrl>
+	<PackageProjectUrl>https://github.com/leo-oliveira-eng/Message</PackageProjectUrl>
 	<RepositoryType>git</RepositoryType>
 	<NeutralLanguage />
+	<PackageTags>Message Response Maybe</PackageTags>
+	<PackageIcon>Logo.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +22,7 @@
 	
   <ItemGroup>
 	<None Include="License.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
+	<None Include="Logo.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
