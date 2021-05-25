@@ -1,10 +1,12 @@
 ﻿using Messages.Core.Enums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Messages.Core.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class ResponseExtensions
     {
         public static Response WithBusinessError(this Response response, string text)
@@ -67,7 +69,7 @@ namespace Messages.Core.Extensions
 
         public static void Set<TValue>(this Response<TValue> response, params Func<TValue, Response>[] actions)
         {
-            if (response == null || actions == null || actions.Count() == 0)
+            if (response == null || actions == null || actions.Length == 0)
                 return;
 
             actions.ToList()
@@ -78,11 +80,6 @@ namespace Messages.Core.Extensions
                     if (result.HasError)
                         response.WithMessages(result.Messages);
                 });
-        }
-
-        public static Response<bool> TrueIfThereAreNoErrors(this Response<bool> response)
-        {
-            return response.SetValue(!response.HasError);
         }
     }
 }

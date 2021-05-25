@@ -9,7 +9,7 @@ namespace Messages.Core.UnitTests.Response
         [TestMethod]
         public void CreateResponse_ShouldCreateResponseWithoutValue()
         {
-            var response = Core.Response<Student>.Create();
+            var response = Response<Student>.Create();
 
             response.Should().NotBeNull();
             response.HasError.Should().BeFalse();
@@ -21,11 +21,37 @@ namespace Messages.Core.UnitTests.Response
         {
             var student = StudentFake();
 
-            var response = Core.Response<Student>.Create(student);
+            var response = Response<Student>.Create(student);
 
             response.Should().NotBeNull();
             response.HasError.Should().BeFalse();
             response.Messages.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void CreateResponse_ShouldCreateResponseEncapsulatingStudentAndMessage()
+        {
+            var student = StudentFake();
+
+            var response = Response<Student>.Create(MessageFake(), student);
+
+            response.Should().NotBeNull();
+            response.HasError.Should().BeFalse();
+            response.Messages.Should().HaveCount(1);
+            response.Data.HasValue.Should().BeTrue();
+            response.Data.Value.Should().Be(student);
+        }
+
+        [TestMethod]
+        public void CreateResponse_ShouldCreateResponseEncapsulatingMessage()
+        {
+            var response = Response<Student>.Create(MessageFake(text: "error", type: Enums.MessageType.BusinessError));
+
+            response.Should().NotBeNull();
+            response.HasError.Should().BeTrue();
+            response.Messages.Should().HaveCount(1);
+            response.Data.HasValue.Should().BeFalse();
+            response.Data.Value.Should().BeNull();
         }
     }
 }

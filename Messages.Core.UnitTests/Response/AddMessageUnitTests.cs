@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Messages.Core.UnitTests.Response
 {
@@ -9,14 +10,20 @@ namespace Messages.Core.UnitTests.Response
         [TestMethod]
         public void SetValue_ShoultAddAMessageToResponse()
         {
-            var student = StudentFake();
             var response = Response<Student>.Create();
 
-            response.SetValue(student);
+            response.AddMessage(MessageFake());
 
-            response.HasError.Should().BeFalse();
-            response.Data.HasValue.Should().BeTrue();
-            response.Data.Value.Should().Be(student);
+            response.Messages.Should().NotBeNull();
+            response.Messages.Should().HaveCount(1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void SetValue_ShoultThowAnAgrumentNullExpection()
+        {
+            var response = Response<Student>.Create();
+
+            response.AddMessage(null);
         }
     }
 }
