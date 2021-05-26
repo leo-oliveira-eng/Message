@@ -8,22 +8,22 @@ Message.Response.Maybe is available on [NuGet](https://www.nuget.org/packages/Me
 
  - Package Manager
 ```
-pm> Install-Package Message.Response.Maybe -Version 1.0.0-preview-3
+pm> Install-Package Message.Response.Maybe -Version 1.0.0
 ```
 
  - via the .NET Core CLI:
 ```
-> dotnet add package Message.Response.Maybe --version 1.0.0-preview-3
+> dotnet add package Message.Response.Maybe --version 1.0.0
 ```
 
  - PackageReference
 ```
-<PackageReference Include="Message.Response.Maybe" Version="1.0.0-preview-3" />
+<PackageReference Include="Message.Response.Maybe" Version="1.0.0" />
 ```
 
  - PaketCLI
 ```
-> paket add Message.Response.Maybe --version 1.0.0-preview-3
+> paket add Message.Response.Maybe --version 1.0.0
 ```
 
 
