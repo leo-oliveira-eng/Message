@@ -3,7 +3,9 @@ name: "Deploy to NuGet"
 on:
   push:
     branches: [ develop, master ]
-
+  release:
+    types:
+      - published
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
