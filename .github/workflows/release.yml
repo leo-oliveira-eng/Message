@@ -1,0 +1,87 @@
+name: "Release"
+
+on:
+  release:
+    types:
+      - published
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  
+  PROJECT_PATH: 'Messages.Core/Messages.Core.csproj'
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
+
+  PROJECT_NAME: Message.Response.Maybe
+  NUGET_FEED: https://api.nuget.org/v3/index.json
+  NUGET_KEY: ${{ secrets.NUGET_KEY }}
+
+  GITHUB_USER: leo-oliveira-eng
+  GITHUB_TOKEN: ${{ secrets.PACK_TOKEN}}
+  GITHUB_FEED: https://nuget.pkg.github.com/leo-oliveira-eng/
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+
+      - name: 'Restore packages'
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Test
+        run: dotnet test --no-build --verbosity normal --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      
+      - name: Report code coverage
+        uses: codecov/codecov-action@v1
+      
+      - name: 'Pack'
+        if: matrix.os == 'ubuntu-latest'
+        run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build -c Release --include-symbols --include-source --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }} -p:PackageVersion=$GITHUB_RUN_ID
+        
+      - name: Upload Artifact
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: nupkg
+          path: ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+
+      - name: Create Release NuGet package
+        run: |
+          arrTag=(${GITHUB_REF//\// })
+          VERSION="${arrTag[2]}"
+          echo Version: $VERSION
+          VERSION="${VERSION//v}"
+          echo Clean Version: $VERSION
+          dotnet pack ${{ env.PROJECT_PATH }} -v normal -c Release --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg
+      - name: Push to GitHub Feed
+        run: |
+          for f in ./nupkg/*.nupkg
+          do
+            curl -vX PUT -u "$GITHUB_USER:$GITHUB_TOKEN" -F package=@$f $GITHUB_FEED
+          done
+      - name: Push to NuGet Feed
+        run: dotnet nuget push ./nupkg/*.nupkg --source $NUGET_FEED --skip-duplicate --api-key $NUGET_KEY
