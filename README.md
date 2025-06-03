@@ -1,3 +1,8 @@
+📦 This repository has been archived and is no longer maintained.
+
+Please note that this project is no longer supported or actively developed.
+The new and actively maintained repository can be found here: [Funcfy](https://github.com/leo-oliveira-eng/funcfy/)
+
 # Message ![.NET Core](https://github.com/leo-oliveira-eng/Message/workflows/.NET%20Core/badge.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/vpre/Message.Response.Maybe)](https://www.nuget.org/packages/Message.Response.Maybe) [![codecov](https://codecov.io/gh/leo-oliveira-eng/Message/branch/master/graph/badge.svg?token=PHRGUJB9UI)](https://codecov.io/gh/leo-oliveira-eng/Message) [![CodeQL](https://github.com/leo-oliveira-eng/Message/actions/workflows/codeQL.yml/badge.svg)](https://github.com/leo-oliveira-eng/Message/actions/workflows/codeQL.yml)
 
 This package encapsulates responses between methods preventing traffic from null objects in an application. 
